@@ -16,7 +16,7 @@ namespace AutoconfigurationEmail.Core
                 .Descendants()
                 .First(x => x.Name.LocalName == "emailProvider");
 
-            var server = emailProvider.Elements().Where(e => (e.Attribute("type").Value == "smtp") 
+            var server = emailProvider.Elements().Where(e => (e.Attribute("type")?.Value == "smtp") 
                 && (GetElementValue(e, "socketType") == "SSL")).FirstOrDefault();
             if(server != null)
             {
@@ -28,7 +28,7 @@ namespace AutoconfigurationEmail.Core
                 SmtpPassType = outgoingServer.passType;
             }
 
-            server = emailProvider.Elements().Where(e => (e.Attribute("type").Value == "imap")
+            server = emailProvider.Elements().Where(e => (e.Attribute("type")?.Value == "imap")
                && (GetElementValue(e, "socketType") == "SSL")).FirstOrDefault();
             if (server != null)
             {
